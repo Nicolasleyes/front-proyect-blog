@@ -1,26 +1,22 @@
-export const Peticion = async (url, metodo, datosGuardar = "") => {
+export const Peticion = async (url, metodo, datosGuardar = "", archivos = false) => {
     let datos = [];
     let cargando = true;
 
     let opciones = {
-        method: "GET"
+        method: metodo
     };
-
-    if (metodo === "GET" || metodo === "DELETE") {
-        opciones = {
-            method: metodo
-        };
-    }
 
     if (metodo === "POST" || metodo === "PUT") {
         try {
-            opciones = {
-                method: metodo,
-                body: JSON.stringify(datosGuardar),
-                headers: {
+            if (archivos) {
+                // Se asume que datosGuardar es un FormData si archivos es true
+                opciones.body = datosGuardar;
+            } else {
+                opciones.body = JSON.stringify(datosGuardar);
+                opciones.headers = {
                     "Content-Type": "application/json"
-                }
-            };
+                };
+            }
         } catch (error) {
             console.error("Error al serializar los datos:", error);
         }
