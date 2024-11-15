@@ -136,6 +136,18 @@ body{
   font-size: 30px;
   
 }
+.articulo-item h3 a{
+  text-decoration: none;
+  color: black;
+  
+}
+
+.articulo-item h3 a:hover{
+  text-decoration: none;
+  color: rgb(3, 74, 255);
+  
+}
+
 
 .jumbo{
   width: 85%;
